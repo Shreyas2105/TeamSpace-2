@@ -7,7 +7,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "none",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  path: "/",
 };
 
 const generateAccessAndRefreshTokens = async (userId) => {
